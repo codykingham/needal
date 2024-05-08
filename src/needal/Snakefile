@@ -1,0 +1,76 @@
+"""
+Snakefile for source_data analysis pipeline.
+"""
+
+from pathlib import Path
+
+# configure paths
+HOME = Path.home()
+
+BHSA_REPO = HOME / "github/etcbc/bhsa"
+BHSA_BASE_DATA = BHSA_REPO / "tf/2021"
+BHSA_GENRE_DATA = HOME / "github/etcbc/genre_synvar/tf/2021"
+BHSA_HEADS_DATA = HOME / "github/etcbc/heads/tf/2021"
+
+ANNOTATION_DIR = Path("../data/annotations")
+
+def globfiles(path, pattern):
+    """Simple method to glob a directory."""
+    return Path(path).glob(pattern)
+
+
+def searchfiles(directory, filenames, ext=None):
+    """Search a directory for a list of filenames."""
+    if ext:
+        filenames = [f'{file}{ext}' for file in filenames]
+    return [
+        file for file in Path(directory).glob('*')
+        if file.name in filenames
+    ]
+
+
+annotations_to_add = ['b_time']
+completed_annotations = ANNOTATION_DIR / 'json'
+
+rule build_corpus:
+    params:
+        bhsa_repo=BHSA_REPO,
+        bhsa_data_path=directory(BHSA_BASE_DATA),
+        bhsa_genre_path=directory(BHSA_GENRE_DATA),
+        bsha_heads_path=directory(BHSA_HEADS_DATA),
+    input:
+        config_script="scripts/custom_corpus/config.py",
+        bhsa_tf=globfiles(BHSA_BASE_DATA, '*.tf'),
+        genre_tf=globfiles(BHSA_GENRE_DATA, '*.tf'),
+        annotations=expand(
+            completed_annotations / '{project}.json', project=annotations_to_add
+        ),
+    output:
+        directory("../data/corpus/")
+    script:
+        "scripts/custom_corpus/build_corpus.py"
+
+
+# Labeling Configs
+LABELS_TO_DO = ['nt_clauses']
+
+rule label_dataset:
+    params:
+        projects=LABELS_TO_DO,
+        annotation_dir=ANNOTATION_DIR,
+    input:
+        corpus=rules.build_corpus.output,
+        tense_data="source_data/eng_tenses/eng_tenses.pkl",
+        subscripts=[
+            "scripts/custom_labels/projects.py",
+            "scripts/custom_labels/annotation_sheets.py",
+        ],
+    output:
+        directory(
+            expand(
+                ANNOTATION_DIR / 'sheets' / 'blank' / '{project}',
+                project=LABELS_TO_DO,
+            )
+        )
+    script:
+        "scripts/custom_labels/label_dataset.py"
