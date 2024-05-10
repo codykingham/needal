@@ -1,5 +1,5 @@
 # needal 🪡
 
-"Need annotations and labels!"
+"NEED Annotations and Labels!"
 
 Annotation tool for use with Text-Fabric
