@@ -2,9 +2,9 @@
 
 from typing import List
 from tf.fabric import Fabric
-from kingham_thesis.data_pipeline.labeling.projects import BaseLabelingProject
-from kingham_thesis.data_pipeline.labeling.autolabeler import AutoLabeler
-from kingham_thesis.data_pipeline.labeling.label_archiving import LabelArchivist
+from needal.labeling.projects import BaseLabelingProject
+from needal.labeling.autolabeler import AutoLabeler
+from needal.labeling.label_archiving import LabelArchivist
 
 
 class ProjectRunner:

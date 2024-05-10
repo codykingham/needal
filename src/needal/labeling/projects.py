@@ -10,12 +10,12 @@ from typing import List, Dict, Optional, Type, Any, Callable, Set
 from tf.fabric import Fabric
 from tf.core.api import Api
 
-from kingham_thesis.data_pipeline.labeling.labelers import BaseLabeler, QueryLabeler
-from kingham_thesis.data_pipeline.labeling.specifiers import (
+from needal.labeling.labelers import BaseLabeler, QueryLabeler
+from needal.labeling.specifiers import (
     TargetSpec, TargetQuerySpecifier, LabelSpec,
     ValueSpec, ValueQuery, LingLabel, SpecsDict
 )
-from kingham_thesis.data_pipeline.labeling.annotation_sheets import (
+from needal.labeling.annotation_sheets import (
     BaseAnnotationSheet, AnnotationSheetSpecs
 )
 

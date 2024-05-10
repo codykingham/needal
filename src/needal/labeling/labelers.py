@@ -1,12 +1,10 @@
 """This module contains a class for assigning labels to a set of Text-Fabric nodes."""
 
-import pickle
-
 from abc import ABC, abstractmethod
 from typing import Set, List, Dict, Tuple
 from tf.fabric import Fabric
 
-from kingham_thesis.data_pipeline.labeling.specifiers import (
+from needal.labeling.specifiers import (
     ValueQuery, NodeIdentifier, LingLabel
 )
 

@@ -7,12 +7,10 @@ from typing import List, Dict, Set, Any, Iterable
 from datetime import datetime
 from tf.fabric import Fabric
 
-from kingham_thesis.data_pipeline.labeling.specifiers import (
+from needal.labeling.specifiers import (
     TargetQuerySpecifier, LabelSpec, NodeIdentifier, LingLabel
 )
-from kingham_thesis.data_pipeline.labeling.projects import (
-    BaseLabelingProject, SetFinder
-)
+from needal.labeling.projects import BaseLabelingProject
 
 
 class AutoLabeler:
@@ -23,7 +21,7 @@ class AutoLabeler:
             tf_fabric: Fabric,
             project: BaseLabelingProject,
     ) -> None:
-        """Initialialize the autolabeler."""
+        """Initialize the auto-labeler."""
         self.tf_fabric = tf_fabric
         self.tf_api = tf_fabric.api
         self.project = project

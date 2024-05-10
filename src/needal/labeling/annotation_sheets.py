@@ -11,7 +11,7 @@ from tf.fabric import Fabric
 from docx import Document
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 
-from kingham_thesis.data_pipeline.labeling.specifiers import LingLabel
+from needal.labeling.specifiers import LingLabel
 
 
 class AnnotationSheetSpecs(TypedDict):

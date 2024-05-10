@@ -11,9 +11,9 @@ from typing import Set, Dict, List, Optional, Any, Tuple, Counter
 
 from tf.fabric import Fabric
 
-from kingham_thesis.data_pipeline.corpus_building.canonical_sorting import canonical_order
-from kingham_thesis.data_pipeline.corpus_building.corpus_copying import get_copy_of_corpus
-from kingham_thesis.data_pipeline.corpus_building.utils import (
+from needal.corpus_editing.canonical_sorting import canonical_order
+from needal.corpus_editing.corpus_copying import get_copy_of_corpus
+from needal.corpus_editing.utils import (
     FeatureGenerator, MetaDataDict, NodeFeatureDict, EdgeFeatureDict,
     EditAction, CorpusData,
 )
