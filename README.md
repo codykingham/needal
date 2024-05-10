@@ -2,4 +2,4 @@
 
 "NEED Annotations and Labels!"
 
-Annotation tool for use with Text-Fabric
+Annotation and auto-labeling tool for use with Text-Fabric
